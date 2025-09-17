@@ -2,13 +2,12 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Leaf, LogOut } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { Link } from "react-router-dom";
 import vayuMascot from "@/assets/vayu-mascot.png";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
   const { user, signOut } = useAuth();
 
   const navItems = [
@@ -55,37 +54,21 @@ const Header = () => {
           <div className="hidden md:flex items-center gap-4">
             {user ? (
               <>
-                <Button 
-                  variant="ghost" 
-                  className="font-medium"
-                  onClick={() => navigate("/dashboard")}
-                >
-                  Dashboard
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  className="font-medium"
-                  onClick={signOut}
-                >
+                <span className="text-sm text-muted-foreground">
+                  Welcome back!
+                </span>
+                <Button variant="ghost" className="font-medium" onClick={signOut}>
                   <LogOut className="w-4 h-4 mr-2" />
                   Sign Out
                 </Button>
               </>
             ) : (
               <>
-                <Button 
-                  variant="ghost" 
-                  className="font-medium"
-                  onClick={() => navigate("/auth")}
-                >
-                  Sign In
+                <Button variant="ghost" className="font-medium" asChild>
+                  <Link to="/auth">Sign In</Link>
                 </Button>
-                <Button 
-                  variant="hero" 
-                  className="font-medium"
-                  onClick={() => navigate("/auth")}
-                >
-                  Get Started
+                <Button variant="hero" className="font-medium" asChild>
+                  <Link to="/auth">Get Started</Link>
                 </Button>
               </>
             )}
@@ -127,49 +110,21 @@ const Header = () => {
                 <div className="flex flex-col gap-3 pt-4 border-t border-border">
                   {user ? (
                     <>
-                      <Button 
-                        variant="ghost" 
-                        className="justify-start"
-                        onClick={() => {
-                          navigate("/dashboard");
-                          setIsOpen(false);
-                        }}
-                      >
-                        Dashboard
-                      </Button>
-                      <Button 
-                        variant="ghost" 
-                        className="justify-start"
-                        onClick={() => {
-                          signOut();
-                          setIsOpen(false);
-                        }}
-                      >
+                      <span className="text-sm text-muted-foreground px-3">
+                        Welcome back!
+                      </span>
+                      <Button variant="ghost" className="justify-start" onClick={signOut}>
                         <LogOut className="w-4 h-4 mr-2" />
                         Sign Out
                       </Button>
                     </>
                   ) : (
                     <>
-                      <Button 
-                        variant="ghost" 
-                        className="justify-start"
-                        onClick={() => {
-                          navigate("/auth");
-                          setIsOpen(false);
-                        }}
-                      >
-                        Sign In
+                      <Button variant="ghost" className="justify-start" asChild>
+                        <Link to="/auth">Sign In</Link>
                       </Button>
-                      <Button 
-                        variant="hero" 
-                        className="justify-start"
-                        onClick={() => {
-                          navigate("/auth");
-                          setIsOpen(false);
-                        }}
-                      >
-                        Get Started
+                      <Button variant="hero" className="justify-start" asChild>
+                        <Link to="/auth">Get Started</Link>
                       </Button>
                     </>
                   )}
