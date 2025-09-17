@@ -66,7 +66,7 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-earth">
+    <section id="features" className="py-20 bg-gradient-earth">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -134,7 +134,12 @@ const Features = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <Button variant="hero" size="lg" className="text-lg px-8 py-6">
+          <Button 
+            variant="hero" 
+            size="lg" 
+            className="text-lg px-8 py-6"
+            onClick={() => window.location.href = '/auth'}
+          >
             Start Learning Today
           </Button>
         </div>

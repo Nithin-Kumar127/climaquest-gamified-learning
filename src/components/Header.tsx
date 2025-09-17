@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Leaf } from "lucide-react";
+import { Menu, Leaf, LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import vayuMascot from "@/assets/vayu-mascot.png";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const { user, signOut } = useAuth();
 
   const navItems = [
     { label: "Learn", href: "#learn" },
@@ -49,12 +53,42 @@ const Header = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" className="font-medium">
-              Sign In
-            </Button>
-            <Button variant="hero" className="font-medium">
-              Get Started
-            </Button>
+            {user ? (
+              <>
+                <Button 
+                  variant="ghost" 
+                  className="font-medium"
+                  onClick={() => navigate("/dashboard")}
+                >
+                  Dashboard
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  className="font-medium"
+                  onClick={signOut}
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button 
+                  variant="ghost" 
+                  className="font-medium"
+                  onClick={() => navigate("/auth")}
+                >
+                  Sign In
+                </Button>
+                <Button 
+                  variant="hero" 
+                  className="font-medium"
+                  onClick={() => navigate("/auth")}
+                >
+                  Get Started
+                </Button>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu */}
@@ -91,12 +125,54 @@ const Header = () => {
                 </nav>
 
                 <div className="flex flex-col gap-3 pt-4 border-t border-border">
-                  <Button variant="ghost" className="justify-start">
-                    Sign In
-                  </Button>
-                  <Button variant="hero" className="justify-start">
-                    Get Started
-                  </Button>
+                  {user ? (
+                    <>
+                      <Button 
+                        variant="ghost" 
+                        className="justify-start"
+                        onClick={() => {
+                          navigate("/dashboard");
+                          setIsOpen(false);
+                        }}
+                      >
+                        Dashboard
+                      </Button>
+                      <Button 
+                        variant="ghost" 
+                        className="justify-start"
+                        onClick={() => {
+                          signOut();
+                          setIsOpen(false);
+                        }}
+                      >
+                        <LogOut className="w-4 h-4 mr-2" />
+                        Sign Out
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button 
+                        variant="ghost" 
+                        className="justify-start"
+                        onClick={() => {
+                          navigate("/auth");
+                          setIsOpen(false);
+                        }}
+                      >
+                        Sign In
+                      </Button>
+                      <Button 
+                        variant="hero" 
+                        className="justify-start"
+                        onClick={() => {
+                          navigate("/auth");
+                          setIsOpen(false);
+                        }}
+                      >
+                        Get Started
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </SheetContent>
