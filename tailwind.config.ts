@@ -22,6 +22,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          glow: "hsl(var(--primary-glow))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -57,6 +58,39 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Gamification Theme Colors
+        pathfinder: {
+          DEFAULT: "hsl(var(--pathfinder))",
+          bg: "hsl(var(--pathfinder-bg))",
+        },
+        explorer: {
+          DEFAULT: "hsl(var(--explorer))",
+          bg: "hsl(var(--explorer-bg))",
+        },
+        innovator: {
+          DEFAULT: "hsl(var(--innovator))",
+          bg: "hsl(var(--innovator-bg))",
+        },
+        // Status Colors
+        success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
+        error: "hsl(var(--error))",
+      },
+      backgroundImage: {
+        "gradient-hero": "var(--gradient-hero)",
+        "gradient-pathfinder": "var(--gradient-pathfinder)",
+        "gradient-explorer": "var(--gradient-explorer)",
+        "gradient-innovator": "var(--gradient-innovator)",
+        "gradient-earth": "var(--gradient-earth)",
+      },
+      boxShadow: {
+        soft: "var(--shadow-soft)",
+        strong: "var(--shadow-strong)",
+        glow: "var(--shadow-glow)",
+      },
+      transitionTimingFunction: {
+        smooth: "var(--transition-smooth)",
+        spring: "var(--bounce-spring)",
       },
       borderRadius: {
         lg: "var(--radius)",
